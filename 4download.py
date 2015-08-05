@@ -4,11 +4,10 @@ import sys
 import urllib.request
 from pyquery import PyQuery as pq
 
-def downloadFile(url):
-    file_name = url.split('/')[-1]
-    print("Downloading: "+ file_name)
-    file = urllib.request.urlretrieve(url, file_name)
-    print("Downloaded: "+file[0]+ " " + file[1]["Content-Length"] + " bytes")
+def downloadFile(url,fileName):
+    print("Downloading: " + fileName)
+    file = urllib.request.urlretrieve(url, fileName)
+    print("Downloaded: " + fileName + " " + file[1]["Content-Length"] + " bytes")
 
 def filterLinks(urls, filter):
     result = []
@@ -32,7 +31,7 @@ d = pq(url, headers={'user-agent': 'pyquery'})
 elements = d(".fileText a")
 links = []
 for element in elements:
-    links.append(pq(element).attr("href"))
+    links.append({'name': pq(element).html(), 'url': pq(element).attr("href")})
 
 if (filter != ""):
     links = filterLinks(links, filter)
@@ -43,8 +42,8 @@ if total == 0:
 
 print("Found " + str(total) + " resources.")
 
-#Descargar enlaces
+# Download links
 for i, link in enumerate(links, start=1):
-    print("File "+ str(i) + " of " + str(total))
-    downloadFile(link.replace("//", "http://"));
-exit("All files Downlaoded!")
+    print("File "+ str(i) + " of " + str(total) + " - " + str(round(((i / total) * 100.0),2)) + "%")
+    downloadFile(link["url"].replace("//", "http://"), link["name"] );
+exit("All files Downloaded!")
