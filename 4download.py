@@ -48,7 +48,7 @@ def getLinks(url, filters):
     if len(links) == 0:
         exit("Nothing found - Bye")
     elif len(links) == totalFiles:
-        print("Nothig New")
+        print("Nothing new")
         return None
     elif totalFiles < len(links):
         if (totalFiles == 0):
