@@ -1,7 +1,7 @@
 # 4download
 Download all files like images, videos from a thread in [4chan](http://www.4chan.org/)
 
-    Usage: 4download.py url [filter]
+    Usage: 4download [-h] -u URL [-f FILTERS [FILTERS ...]] [-d DELAY]
 
 ## Requirements
 
@@ -17,11 +17,15 @@ sudo pip install pyquery
 
 Download all resources in the thread
 
-    4download.py http://boards.4chan.org/g/thread/39894014
+    4download -u http://boards.4chan.org/g/thread/39894014
 
-Download all png images
+Download all png, webm files
 
-    4download.py http://boards.4chan.org/g/thread/39894014 png
+    4download -u http://boards.4chan.org/g/thread/39894014 -f png webm
+
+Check the web page every minute for new resources
+
+    4download -u http://boards.4chan.org/g/thread/39894014 -d 1
 
 ## Remember
 
