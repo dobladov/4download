@@ -10,7 +10,7 @@ Download all files like images, videos from a thread in [4chan](http://www.4chan
 
 ```
 sudo apt-get install python3
-sudo pip install pyquery
+sudo pip3 install pyquery
 ```
 
 ## Examples
